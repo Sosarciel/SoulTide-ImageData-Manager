@@ -11,6 +11,7 @@ export const CmdBuildMetadata = (program: Command) => program
     .action(async()=>{
         const chars = await fs.promises.readdir(DATA_PATH);
         chars.map(async char => {
+            if(char[0]==='@') return;
             const processdir = path.join(DATASET_PATH,'character',char,PROCESSED_DIR_NAME);
             if(! await UtilFT.pathExists(processdir)) return;
             await pipe(
