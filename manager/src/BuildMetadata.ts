@@ -16,7 +16,7 @@ export const CmdBuildMetadata = (program: Command) => program
                 return {filepath:fp.replace(/(.+)\.txt/,'$1.png'), text};
             })),
             async datas => datas.reduce((acc,cur)=>
-                `${acc}${cur.filepath},"${cur.text}"`
+                `${acc}\n"${cur.filepath}","${cur.text}"`
             ,'file_name,text'),
             async text => fs.promises.writeFile(path.join(DATASET_PATH,'metadata.csv'),text),
         )
