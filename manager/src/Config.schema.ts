@@ -12,7 +12,7 @@ export type TrainingSetInfo = {
     };
 };
 
-export const ROOT_PATH = path.join(__dirname, '..');
+export const ROOT_PATH = path.join(__dirname, '..', '..');
 export const DATA_PATH = path.join(ROOT_PATH,'dataset','character');
 export const MANAGER_PATH = path.join(ROOT_PATH,'manager');
 export const STYLES_PATH = path.join(MANAGER_PATH,'styles');
