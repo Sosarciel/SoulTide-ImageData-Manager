@@ -1,5 +1,5 @@
 import { Command } from 'commander';
-import { DATA_PATH, DATASET_PATH, PROCESSED_DIR_NAME } from './Config.schema';
+import { DATA_PATH, getCategorizedDir, getProcessedDir } from './Config.schema';
 import fs from 'fs';
 import { pipe, UtilFT } from '@zwa73/utils';
 import path from 'pathe';
@@ -12,8 +12,13 @@ export const CmdBuildMetadata = (program: Command) => program
         const chars = await fs.promises.readdir(DATA_PATH);
         chars.map(async char => {
             if(char[0]==='@') return;
-            const processdir = path.join(DATASET_PATH,'character',char,PROCESSED_DIR_NAME);
+            const processdir = getProcessedDir(char);
+            const categorydir = getCategorizedDir(char);
+
             if(! await UtilFT.pathExists(processdir)) return;
+            if(! await UtilFT.pathExists(categorydir)) return;
+
+            //processed
             await pipe(
                 UtilFT.fileSearchGlob(processdir, '*/*.txt'),
                 async fps => Promise.all(fps.map(async fp =>{
@@ -24,6 +29,18 @@ export const CmdBuildMetadata = (program: Command) => program
                     `${acc}\n"${cur.filepath}","${cur.text}"`
                 ,'file_name,text'),
                 async text => fs.promises.writeFile(path.join(processdir,'metadata.csv'),text),
+            );
+
+            //categorized
+            await pipe(
+                UtilFT.fileSearchRegex(processdir, /.+\.(png|jpg)$/.source),
+                async fps => Promise.all(fps.map(async fp =>{
+                    return {filepath:path.relative(processdir,fp), text:path.parse(fp).dir};
+                })),
+                async datas => datas.reduce((acc,cur)=>
+                    `${acc}\n"${cur.filepath}","${cur.text}"`
+                ,'file_name,text'),
+                async text => fs.promises.writeFile(path.join(categorydir,'metadata.csv'),text),
             );
         });
 });

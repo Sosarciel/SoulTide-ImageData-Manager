@@ -1,8 +1,8 @@
 import { Command } from "commander";
 import fs from 'fs';
 import path from 'pathe';
-import { PRecord, UtilFT } from "@zwa73/utils";
-import { DATA_PATH, TrainingSetInfo, TRAINING_SET_DIR_NAME, CATEGORUZED_DIR_NAME, PROCESSED_DIR_NAME, INFO_FILE_NAME } from "./Config.schema";
+import { UtilFT } from "@zwa73/utils";
+import { TrainingSetInfo, INFO_FILE_NAME, getProcessedDir } from "./Config.schema";
 import { capitalizeFirstLetter, parseStrlist } from "./Util";
 
 
@@ -29,7 +29,7 @@ export const CmdBuildInfo = (program: Command) => program
         //遍历角色
         for(const charName of nameList){
             //待处理文件夹
-            const processFolder = path.join(DATA_PATH,charName,PROCESSED_DIR_NAME);
+            const processFolder = getProcessedDir(charName);
             await UtilFT.ensurePathExists(processFolder,{dir:true});
             //info路径
             const infoPath = path.join(processFolder,INFO_FILE_NAME);

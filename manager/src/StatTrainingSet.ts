@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'pathe';
 import { Command } from 'commander';
-import { DATA_PATH, TRAINING_SET_DIR_NAME } from './Config.schema';
+import { DATA_PATH, getTrainingSetDir } from './Config.schema';
 import { UtilFT } from '@zwa73/utils';
 import { parseStrlist } from './Util';
 
@@ -70,7 +70,7 @@ export const CmdStatTrainingSet = (program: Command) => program
         //遍历角色 
         for(const charName of nameList){
             const tmap = new TagMap(charName);
-            const buildFolder = path.join(DATA_PATH,charName,TRAINING_SET_DIR_NAME);
+            const buildFolder = getTrainingSetDir(charName);
 
             const txtlist = await UtilFT.fileSearchGlob(buildFolder,'**/*.txt');
             for(const filePath of txtlist){

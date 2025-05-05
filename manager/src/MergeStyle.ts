@@ -1,7 +1,7 @@
 import { Command } from 'commander';
 import { CSV, StyleCsv } from './Util';
 import path from 'pathe';
-import { CURRENT_VER_DIR_NAME, DATA_PATH, getModelPath, STYLE_BASE_PATH, STYLE_FILE_NAME, STYLE_OTHER_PATH, STYLE_PATH, STYLE_SCENE_PATH } from './Config.schema';
+import { CURRENT_VER_DIR_NAME, DATA_PATH, getModelDir, STYLE_BASE_PATH, STYLE_FILE_NAME, STYLE_OTHER_PATH, STYLE_PATH, STYLE_SCENE_PATH } from './Config.schema';
 import fs from 'fs';
 
 
@@ -33,7 +33,7 @@ export const parseStylesTxt = (txt:string)=>{
     return resultList;
 }
 export const getCurrentStyles = async (charName:string)=>{
-    const currentDir = path.join(getModelPath(charName),CURRENT_VER_DIR_NAME);
+    const currentDir = path.join(getModelDir(charName),CURRENT_VER_DIR_NAME);
     const verlist = await fs.promises.readdir(currentDir);
     if(verlist.length<=0) throw `当前版本目录${currentDir}为空`;
     //if(verlist.length>1) throw `当前版本目录${currentDir}不唯一`;
