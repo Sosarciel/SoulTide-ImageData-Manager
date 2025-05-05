@@ -1,0 +1,6 @@
+[submodule "ImageData-Prompt-Classifier"]
+	path = ImageData-Prompt-Classifier
+	url = https://github.com/Sosarciel/ImageData-Prompt-Classifier.git
+[submodule "zwa73/SoulTide-ImageData-Dataset"]
+	path = dataset
+	url = https://huggingface.co/datasets/zwa73/SoulTide-ImageData-Dataset.git

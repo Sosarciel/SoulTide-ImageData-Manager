@@ -1,0 +1,25 @@
+
+
+
+PonyV3.0 - style
+base:mugenmalumixSDXL_v42.safetensors
+w:768 h:1024
+tagger:WD14 moat tagger v2
+Weight threshold:0.2
+Min tag fraction in batch and interrogations:0
+
+PonyV3.0 - char
+base:mugenmalumixSDXL_v42.safetensors
+w:768 h:1024
+l2d:2全身1半身
+tagger:WD14 moat tagger v2
+Weight threshold:0.3
+Min tag fraction in batch and interrogations:0
+
+ILV1.0 - char
+base:hassakuXLIllustrious_v21fix.safetensors
+w:768 h:1024
+l2d:2全身1半身
+tagger:WD14 moat tagger v2
+Weight threshold:0.3
+Min tag fraction in batch and interrogations:0

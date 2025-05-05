@@ -1,0 +1,33 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"definitions": {
+		"TrainingSetInfo": {
+			"type": "object",
+			"additionalProperties": {
+				"type": "object",
+				"properties": {
+					"train_count": {
+						"type": "number"
+					},
+					"folder_list": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"tags": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					}
+				},
+				"required": [
+					"folder_list",
+					"tags",
+					"train_count"
+				]
+			}
+		}
+	}
+}

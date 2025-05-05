@@ -1,0 +1,6 @@
+{
+    "workspaces": [
+        "./manager",
+        "./ImageData-Prompt-Classifier"
+    ]
+}

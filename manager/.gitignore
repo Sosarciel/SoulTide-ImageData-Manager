@@ -1,0 +1,14 @@
+**/model/**/*.zip
+**/model/**/*.safetensors
+node_modules/**
+other/**
+
+**/test/**
+
+tmp.txt
+
+**/training_set/**
+
+**/KoniStyle/**
+
+backup/**

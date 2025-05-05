@@ -1,0 +1,10 @@
+{
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "data/*/processed/info.json"
+            ],
+            "url": "./schema/TrainingSetInfo.schema.json"
+        }
+    ]
+}

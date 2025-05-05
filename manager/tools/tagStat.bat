@@ -1,0 +1,2 @@
+node tagStat.js
+pause

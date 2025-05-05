@@ -1,0 +1,2 @@
+node buildTrainset.js
+pause
