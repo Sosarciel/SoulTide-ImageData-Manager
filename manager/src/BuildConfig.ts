@@ -29,5 +29,5 @@ export const CmdBuildConfig = (program: Command) => program
     - "character/${char}/processed/**/*.png"
     - "character/${char}/processed/metadata.csv"`;
         }))).join('');
-        console.info(`configs:\n${result}`);
+        console.info(`configs:${result}`);
 });
