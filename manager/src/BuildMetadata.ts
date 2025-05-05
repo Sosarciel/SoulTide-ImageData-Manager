@@ -13,7 +13,7 @@ export const CmdBuildMetadata = (program: Command) => program
             UtilFT.fileSearchGlob(DATASET_PATH, '**/processed/*/*.txt'),
             async fps => Promise.all(fps.map(async fp =>{
                 const text = await fs.promises.readFile(fp,'utf-8');
-                return {filepath:fp.replace(/(.+)\.txt/,'$1.png'), text};
+                return {filepath:path.relative(DATASET_PATH,fp.replace(/(.+)\.txt/,'$1.png')), text};
             })),
             async datas => datas.reduce((acc,cur)=>
                 `${acc}\n"${cur.filepath}","${cur.text}"`
