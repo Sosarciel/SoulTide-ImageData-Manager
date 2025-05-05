@@ -23,6 +23,7 @@ export const CmdBuildConfig = (program: Command) => program
     path:
     - "character/${char}/categorized/**/*.png"
     - "character/${char}/categorized/**/*.jpg"
+    - "character/${char}/categorized/metadata.csv"
   - split: processed
     path:
     - "character/${char}/processed/**/*.png"
