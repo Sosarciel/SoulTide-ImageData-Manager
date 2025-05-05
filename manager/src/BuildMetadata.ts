@@ -25,7 +25,7 @@ export const CmdBuildMetadata = (program: Command) => program
                     const text = await fs.promises.readFile(fp,'utf-8');
                     return {filepath:path.relative(processdir,fp.replace(/(.+)\.txt/,'$1.png')), text};
                 })),
-                async datas => datas.reduce((acc,cur)=>
+                async datas => datas.sort((a, b) => a.filepath.localeCompare(b.filepath)).reduce((acc,cur)=>
                     `${acc}\n"${cur.filepath}","${cur.text}"`
                 ,'file_name,text'),
                 async text => fs.promises.writeFile(path.join(processdir,'metadata.csv'),text),
@@ -35,9 +35,10 @@ export const CmdBuildMetadata = (program: Command) => program
             await pipe(
                 UtilFT.fileSearchRegex(processdir, /.+\.(png|jpg)$/.source),
                 async fps => Promise.all(fps.map(async fp =>{
-                    return {filepath:path.relative(processdir,fp), text:path.parse(fp).dir};
+                    const rfp = path.relative(processdir,fp);
+                    return {filepath:rfp, text:path.parse(rfp).dir};
                 })),
-                async datas => datas.reduce((acc,cur)=>
+                async datas => datas.sort((a, b) => a.filepath.localeCompare(b.filepath)).reduce((acc,cur)=>
                     `${acc}\n"${cur.filepath}","${cur.text}"`
                 ,'file_name,text'),
                 async text => fs.promises.writeFile(path.join(categorydir,'metadata.csv'),text),
