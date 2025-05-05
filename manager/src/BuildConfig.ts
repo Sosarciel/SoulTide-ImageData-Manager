@@ -9,8 +9,6 @@ export const CmdBuildConfig = (program: Command) => program
     .description("构造hugface的cofig")
     .action(async()=>{
         const chars = await fs.promises.readdir(DATA_PATH);
-        let txt = 'configs:\n';
-        console.info(txt);
         const result = (await Promise.all(chars.map(async char => {
             if(char[0]==='@') return;
             const processdir = getProcessedDir(char);
