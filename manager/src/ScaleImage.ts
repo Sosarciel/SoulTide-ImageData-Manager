@@ -29,7 +29,7 @@ export const CmdScaleImage = (program: Command) => program
             match(
                 await _scaleImageToPNG(inputpath,fulloutpath,scale),{
                 [Success]:k=>undefined,
-                [Failed]:(k,v)=>console.error(v),
+                [Failed]:v=>console.error(v.result),
             })
         }).append();
     });

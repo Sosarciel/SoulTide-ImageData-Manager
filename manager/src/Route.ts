@@ -13,6 +13,7 @@ import { CmdProcessPrompt } from "./ProcessPrompt";
 import { CmdScaleImage } from "./ScaleImage";
 import { CmdEvalLog } from "./EvalLog";
 import { CmdResizeImage } from "./ResizeImage";
+import { CmdBuildMetadata } from "./BuildMetadata";
 
 export async function cliRoute() {
     CmdAddBG(program);
@@ -29,6 +30,7 @@ export async function cliRoute() {
     CmdScaleImage(program);
     CmdEvalLog(program);
     CmdResizeImage(program);
+    CmdBuildMetadata(program);
     program.parse(process.argv);
 }
 cliRoute();

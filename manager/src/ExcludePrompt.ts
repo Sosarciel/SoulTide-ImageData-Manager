@@ -1,5 +1,5 @@
 import { Command } from 'commander';
-import {addPromptset, excludePrompt, ExcludePromptOpt, getPatternsCategory} from '@sosarciel-stablediffusion/prompt-classifier';
+import {addPromptset, excludePrompt, ExcludePromptOpt, getPatternsCategory} from '@sosarciel-stablediffusion/imagedata-prompt-classifier';
 import { parseStrlist } from './Util';
 
 export const CmdExcludePrompt = (program: Command) => program

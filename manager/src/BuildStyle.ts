@@ -5,7 +5,7 @@ import { INFO_FILE_NAME, PROCESSED_DIR_NAME, STYLE_FILE_NAME, TrainingSetInfo } 
 import { UtilFT } from '@zwa73/utils';
 import { collectCharPrompt } from './CollectCharPrompt';
 import fs from 'fs';
-import { excludePrompt, ExcludePromptResult, getPatternsCategory } from '@sosarciel-stablediffusion/prompt-classifier';
+import { excludePrompt, ExcludePromptResult, getPatternsCategory } from '@sosarciel-stablediffusion/imagedata-prompt-classifier';
 
 
 

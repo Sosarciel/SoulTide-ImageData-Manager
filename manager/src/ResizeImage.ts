@@ -22,8 +22,8 @@ export const CmdResizeImage = (program: Command) => program
             await UtilFT.ensurePathExists(path.dirname(fulloutpath),{dir:true});
             match(
                 await _resizeImageToPNG(inputpath,fulloutpath,width,height),{
-                [Success]:k=>undefined,
-                [Failed]:(k,v)=>console.error(v),
+                [Success]:v=>undefined,
+                [Failed] :v=>console.error(v.result),
             })
         }).append();
     });
