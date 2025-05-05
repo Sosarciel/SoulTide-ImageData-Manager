@@ -33,9 +33,9 @@ export const CmdBuildMetadata = (program: Command) => program
 
             //categorized
             await pipe(
-                UtilFT.fileSearchRegex(processdir, /.+\.(png|jpg)$/.source),
+                UtilFT.fileSearchRegex(categorydir, /.+\.(png|jpg)$/.source),
                 async fps => Promise.all(fps.map(async fp =>{
-                    const rfp = path.relative(processdir,fp);
+                    const rfp = path.relative(categorydir,fp);
                     return {filepath:rfp, text:path.parse(rfp).dir};
                 })),
                 async datas => datas.sort((a, b) => a.filepath.localeCompare(b.filepath)).reduce((acc,cur)=>
