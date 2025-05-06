@@ -26,7 +26,7 @@ export const CmdBuildMetadata = (program: Command) => program
                     return {filepath:path.relative(processdir,fp.replace(/(.+)\.txt/,'$1.png')), text};
                 })),
                 async datas => datas.sort((a, b) => a.filepath.localeCompare(b.filepath)).reduce((acc,cur)=>
-                    `${acc}\n"${cur.filepath}","${cur.text}"`
+                    `${acc}\n${JSON.stringify(cur.filepath)},${JSON.stringify(cur.text)}`
                 ,'file_name,text'),
                 async text => fs.promises.writeFile(path.join(processdir,'metadata.csv'),text),
             );
@@ -39,7 +39,7 @@ export const CmdBuildMetadata = (program: Command) => program
                     return {filepath:rfp, text:path.parse(rfp).dir};
                 })),
                 async datas => datas.sort((a, b) => a.filepath.localeCompare(b.filepath)).reduce((acc,cur)=>
-                    `${acc}\n"${cur.filepath}","${cur.text}"`
+                    `${acc}\n${JSON.stringify(cur.filepath)},${JSON.stringify(cur.text)}`
                 ,'file_name,text'),
                 async text => fs.promises.writeFile(path.join(categorydir,'metadata.csv'),text),
             );
