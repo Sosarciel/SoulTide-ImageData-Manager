@@ -33,7 +33,7 @@ export const CmdBuildMetadata = (program: Command) => program
 
             //categorized
             await pipe(
-                UtilFT.fileSearchRegex(categorydir, /.+\.(png|jpg)$/.source),
+                UtilFT.fileSearchRegex(categorydir, /.+\.(png|jpg)$/i),
                 async fps => Promise.all(fps.map(async fp =>{
                     const rfp = path.relative(categorydir,fp);
                     return {filepath:rfp, text:path.parse(rfp).dir};
