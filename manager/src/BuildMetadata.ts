@@ -20,10 +20,15 @@ export const CmdBuildMetadata = (program: Command) => program
 
             //processed
             await pipe(
-                UtilFT.fileSearchGlob(processdir, '*/*.txt'),
+                UtilFT.fileSearchRegex(processdir, /^.+\/processed\/[^\/]+\/[^\/]+\.txt$/i),
                 async fps => Promise.all(fps.map(async fp =>{
+                    const pngfp = fp.replace(/(.+)\.txt/,'$1.png');
+                    if(!/.+\.txt$/.test(fp))
+                        console.log(`错误的文件名: ${fp}`);
+                    if(!await UtilFT.pathExists(pngfp))
+                        console.log(`未找到图片: ${pngfp}`);
                     const text = await fs.promises.readFile(fp,'utf-8');
-                    return {filepath:path.relative(processdir,fp.replace(/(.+)\.txt/,'$1.png')), text};
+                    return {filepath:path.relative(processdir,pngfp), text};
                 })),
                 async datas => datas.sort((a, b) => a.filepath.localeCompare(b.filepath)).reduce((acc,cur)=>
                     `${acc}\n${JSON.stringify(cur.filepath)},${JSON.stringify(cur.text)}`
@@ -35,6 +40,8 @@ export const CmdBuildMetadata = (program: Command) => program
             await pipe(
                 UtilFT.fileSearchRegex(categorydir, /.+\.(png|jpg)$/i),
                 async fps => Promise.all(fps.map(async fp =>{
+                    if(!/.+\.(png|jpg)$/.test(fp))
+                        console.log(`错误的文件名: ${fp}`);
                     const rfp = path.relative(categorydir,fp);
                     return {filepath:rfp, text:path.parse(rfp).dir};
                 })),
