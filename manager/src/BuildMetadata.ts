@@ -22,9 +22,9 @@ export const CmdBuildMetadata = (program: Command) => program
             await pipe(
                 UtilFT.fileSearchRegex(processdir, /^.+\/processed\/[^\/]+\/[^\/]+\.txt$/i),
                 async fps => Promise.all(fps.map(async fp =>{
-                    const pngfp = fp.replace(/(.+)\.txt/,'$1.png');
                     if(!/.+\.txt$/.test(fp))
                         console.log(`错误的文件名: ${fp}`);
+                    const pngfp = fp.replace(/(.+)\.txt/,'$1.png');
                     if(!await UtilFT.pathExists(pngfp))
                         console.log(`未找到图片: ${pngfp}`);
                     const text = await fs.promises.readFile(fp,'utf-8');
