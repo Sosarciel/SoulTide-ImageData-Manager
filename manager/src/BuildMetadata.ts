@@ -20,7 +20,7 @@ export const CmdBuildMetadata = (program: Command) => program
 
             //processed
             await pipe(
-                UtilFT.fileSearchRegex(processdir, /^.+\/processed\/[^\/]+\/[^\/]+\.txt$/i),
+                UtilFT.fileSearchRegex(processdir, /[^\/]+\/[^\/]+\.txt$/i),
                 async fps => Promise.all(fps.map(async fp =>{
                     if(!/.+\.txt$/.test(fp))
                         console.log(`错误的文件名: ${fp}`);
