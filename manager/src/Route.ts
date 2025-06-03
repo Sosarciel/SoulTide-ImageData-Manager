@@ -15,6 +15,7 @@ import { CmdEvalLog } from "./EvalLog";
 import { CmdResizeImage } from "./ResizeImage";
 import { CmdBuildMetadata } from "./BuildMetadata";
 import { CmdBuildConfig } from "./BuildConfig";
+import { CmdFixFileext } from "./FixFileext";
 
 export async function cliRoute() {
     CmdAddBG(program);
@@ -33,6 +34,7 @@ export async function cliRoute() {
     CmdResizeImage(program);
     CmdBuildMetadata(program);
     CmdBuildConfig(program);
+    CmdFixFileext(program);
     program.parse(process.argv);
 }
 cliRoute();
