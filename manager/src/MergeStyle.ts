@@ -78,8 +78,8 @@ export const CmdMergeStyle = (program: Command) => program
         const addstr = await CSV.stringify([
             ...await getStyles(STYLE_BASE_PATH,false),
             ...outstyles,
-            ...await getStyles(STYLE_OTHER_PATH),
-            ...parseStylesTxt(await fs.promises.readFile(STYLE_SCENE_PATH,'utf-8'))
+            ...parseStylesTxt(await fs.promises.readFile(STYLE_OTHER_PATH,'utf-8')),
+            ...parseStylesTxt(await fs.promises.readFile(STYLE_SCENE_PATH,'utf-8')),
         ]);
         //console.log(addstr);
         await fs.promises.writeFile(STYLE_PATH,addstr.trim(),'utf-8');

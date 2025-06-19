@@ -19,7 +19,7 @@ export const MANAGER_PATH = path.join(ROOT_PATH,'manager');
 export const STYLES_PATH = path.join(MANAGER_PATH,'styles');
 
 export const STYLE_BASE_PATH = path.join(STYLES_PATH,'styles_base.csv');
-export const STYLE_OTHER_PATH = path.join(STYLES_PATH,'styles_other.csv');
+export const STYLE_OTHER_PATH = path.join(STYLES_PATH,'styles_other.txt');
 export const STYLE_SCENE_PATH = path.join(STYLES_PATH,'styles_scene.txt');
 export const STYLE_PATH = path.join(STYLES_PATH,'styles.csv');
 
