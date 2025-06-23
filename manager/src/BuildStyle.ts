@@ -5,7 +5,7 @@ import { INFO_FILE_NAME, PROCESSED_DIR_NAME, STYLE_FILE_NAME, TrainingSetInfo } 
 import { UtilFT } from '@zwa73/utils';
 import { collectCharPrompt } from './CollectCharPrompt';
 import fs from 'fs';
-import { excludePrompt, ExcludePromptResult, getPatternsCategory } from '@sosarciel-stablediffusion/imagedata-prompt-classifier';
+import { ExcludePromptResult, extractPrompt, getPatternsCategory } from '@sosarciel-stablediffusion/imagedata-prompt-classifier';
 
 
 
@@ -31,7 +31,7 @@ export const buildStyle = async (charPattern:MatchPattern)=>{
         for(const subtag of subTags){
             //提取子标签
             const ps = await collectCharPrompt(charname,subtag);
-            const pps = await excludePrompt(ps,{
+            const pps = await extractPrompt(ps,{
                 exclude:(await getPatternsCategory()).filter(c=>!['figure','clothing'].includes(c)),
                 minrep:2
             });
@@ -40,7 +40,7 @@ export const buildStyle = async (charPattern:MatchPattern)=>{
             const subtagname = subtagformat.exec(subtag);
             if(subtagname==null) throw `${charname} ${subtag} 子标签名称不符合格式`;
             const pname = charname+capitalizeFirstLetter(subtagname[2]);
-            pps.remaining = [`st${subtagname[1]}`,subtag,'1girl',...pps.remaining.filter(s=>!tags.includes(s))];
+            pps.reserve = [`st${subtagname[1]}`,subtag,'1girl',...pps.reserve.filter(s=>!tags.includes(s))];
             outobj[pname] = pps;
         }
 
@@ -48,7 +48,7 @@ export const buildStyle = async (charPattern:MatchPattern)=>{
         for(const maintag of mainTags){
             //提取子标签
             const ps = await collectCharPrompt(charname,maintag);
-            const pps = await excludePrompt(ps,{
+            const pps = await extractPrompt(ps,{
                 exclude:(await getPatternsCategory()).filter(c=>!['figure'].includes(c)),
                 minrep:3
             });
@@ -57,7 +57,7 @@ export const buildStyle = async (charPattern:MatchPattern)=>{
             const tagname = tagformat.exec(maintag);
             if(tagname==null) throw `${charname} ${maintag} 标签名称不符合格式`;
             const pname = charname+'Pure';
-            pps.remaining = [maintag,'1girl',...pps.remaining.filter(s=>!tags.includes(s))];
+            pps.reserve = [maintag,'1girl',...pps.reserve.filter(s=>!tags.includes(s))];
             outobj[pname] = pps;
         }
 
@@ -68,8 +68,8 @@ export const buildStyle = async (charPattern:MatchPattern)=>{
                 `${k}:\n`+
                 `exclude:\n`+
                 `${v.exclude.join(', ').trim()}\n`+
-                `remaining:\n`+
-                `${v.remaining.join(', ').trim()}\n`+
+                `reserve:\n`+
+                `${v.reserve.join(', ').trim()}\n`+
                 `\n`
             )
         await fs.promises.writeFile(path.join(chardir,PROCESSED_DIR_NAME,STYLE_FILE_NAME),outstr.trim());

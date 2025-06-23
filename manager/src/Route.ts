@@ -5,7 +5,7 @@ import { CmdStatTrainingSet } from "./StatTrainingSet";
 import { CmdBuildInfo } from "./BuildInfo";
 import { CmdCheckTrainingset } from "./CheckTrainingset";
 import { CmdExtractFirstFrame } from "./ExtractFirstFrame";
-import { CmdExcludePrompt } from "./ExcludePrompt";
+import { CmdExtractPrompt } from "./ExtractPrompt";
 import { CmdCollectCharPrompt } from "./CollectCharPrompt";
 import { CmdBuildStyle } from "./BuildStyle";
 import { CmdMergeStyle } from "./MergeStyle";
@@ -24,7 +24,7 @@ export async function cliRoute() {
     CmdBuildInfo(program);
     CmdCheckTrainingset(program);
     CmdExtractFirstFrame(program);
-    CmdExcludePrompt(program);
+    CmdExtractPrompt(program);
     CmdProcessPrompt(program);
     CmdCollectCharPrompt(program);
     CmdBuildStyle(program);
