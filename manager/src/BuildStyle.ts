@@ -32,7 +32,7 @@ export const buildStyle = async (charPattern:MatchPattern)=>{
             //提取子标签
             const ps = await collectCharPrompt(charname,subtag);
             const pps = await extractPrompt(ps,{
-                exclude:(await getPatternsCategory()).filter(c=>!['figure','clothing'].includes(c)),
+                reserve:['figure','clothing'],
                 minrep:2
             });
             //获取名称
@@ -49,7 +49,7 @@ export const buildStyle = async (charPattern:MatchPattern)=>{
             //提取子标签
             const ps = await collectCharPrompt(charname,maintag);
             const pps = await extractPrompt(ps,{
-                exclude:(await getPatternsCategory()).filter(c=>!['figure'].includes(c)),
+                reserve:['figure'],
                 minrep:3
             });
             //获取名称
