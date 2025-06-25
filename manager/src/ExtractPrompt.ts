@@ -1,5 +1,5 @@
 import { Command } from 'commander';
-import {addPromptset, ExcludePromptOpt, extractPrompt, getPatternsCategory, getPromptCountMap, PromptCountMap} from '@sosarciel-stablediffusion/imagedata-prompt-classifier';
+import {addPromptset, ExtractPromptOpt, extractPrompt, getPatternsCategory, getPromptCountMap, PromptCountMap} from '@sosarciel-stablediffusion/imagedata-prompt-classifier';
 import { parseStrlist } from './Util';
 
 export const CmdExtractPrompt = (program: Command) => program
@@ -9,7 +9,7 @@ export const CmdExtractPrompt = (program: Command) => program
     .argument("<input>", "输入prompt 逗号分隔",(str)=>str.replace(/[\r\n]/g,'').replace(/_/g,' ').split(','))
     .option("-e, --exclude <list>", `排除列表 *为全部 逗号分隔 允许值为:${Object.keys(getPatternsCategory()).join('|')}`,parseStrlist)
     .option("-r, --reserve <list>", `保留列表 *为全部 逗号分隔 允许值为:${Object.keys(getPatternsCategory()).join('|')}`,parseStrlist)
-    .action(async(input:string[],opt?:ExcludePromptOpt)=>{
+    .action(async(input:string[],opt?:ExtractPromptOpt)=>{
         const inputmap = getPromptCountMap(input);
         if(opt?.exclude?.[0]=="*") opt.exclude = await getPatternsCategory();
         const {exclude,reserve} = await extractPrompt(inputmap,opt);

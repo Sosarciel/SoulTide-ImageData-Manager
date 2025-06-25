@@ -5,7 +5,7 @@ import { INFO_FILE_NAME, PROCESSED_DIR_NAME, STYLE_FILE_NAME, TrainingSetInfo } 
 import { UtilFT } from '@zwa73/utils';
 import { collectCharPrompt } from './CollectCharPrompt';
 import fs from 'fs';
-import { ExcludePromptResult, extractPrompt, getPatternsCategory } from '@sosarciel-stablediffusion/imagedata-prompt-classifier';
+import { ExtractPromptResult, extractPrompt, getPatternsCategory } from '@sosarciel-stablediffusion/imagedata-prompt-classifier';
 
 
 
@@ -13,7 +13,7 @@ import { ExcludePromptResult, extractPrompt, getPatternsCategory } from '@sosarc
 export const buildStyle = async (charPattern:MatchPattern)=>{
     const chardirlist = await matchCharDir(charPattern);
     for(const chardir of chardirlist){
-        const outobj:Record<string,ExcludePromptResult> = {};
+        const outobj:Record<string,ExtractPromptResult> = {};
         const charname = path.parse(chardir).name;
         //读取info
         const info = await UtilFT.loadJSONFile(path.join(chardir,PROCESSED_DIR_NAME,INFO_FILE_NAME)) as TrainingSetInfo;

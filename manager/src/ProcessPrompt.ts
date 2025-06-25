@@ -1,5 +1,5 @@
 import { Command } from 'commander';
-import {addPromptset, classificationPrompt, ExcludePromptOpt, getPatternsCategory} from '@sosarciel-stablediffusion/imagedata-prompt-classifier';
+import {addPromptset, classificationPrompt, ExtractPromptOpt, getPatternsCategory} from '@sosarciel-stablediffusion/imagedata-prompt-classifier';
 
 export const CmdProcessPrompt = (program: Command) => program
     .command("Process-Prompt")
@@ -18,9 +18,7 @@ export const CmdProcessPrompt = (program: Command) => program
             console.log(`${k}:`,v);
         });
 
-        console.log(`missed: ${missed.join(', ')}`);
+        console.log(`missed: `,missed);
 
-        if(opt?.add){
-            await addPromptset(psd);
-        }
+        if(opt?.add) await addPromptset(psd);
     });
