@@ -25,5 +25,5 @@ export const CmdResizeImage = (program: Command) => program
                 [Success]:v=>undefined,
                 [Failed] :v=>console.error(v.result),
             })
-        }).append();
+        }).apply();
     });

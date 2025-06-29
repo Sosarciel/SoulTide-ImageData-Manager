@@ -5,7 +5,7 @@
 		"experimentalDecorators": true,
         "esModuleInterop": true,
         "target": "ES2022",
-        "module": "commonjs",
+        "module": "node16",
         "outDir": "./dist",
         "rootDir": "./src",
         "declaration": true,

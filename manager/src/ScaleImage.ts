@@ -31,5 +31,5 @@ export const CmdScaleImage = (program: Command) => program
                 [Success]:k=>undefined,
                 [Failed]:v=>console.error(v.result),
             })
-        }).append();
+        }).apply();
     });
