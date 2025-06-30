@@ -33,6 +33,7 @@ export const buildStyle = async (charPattern:MatchPattern)=>{
             const ps = await collectCharPrompt(charname,subtag);
             const pps = await extractPrompt(ps,{
                 reserve:['figure','clothing'],
+                exclude:['footwear','character'],
                 minrep:2
             });
             //获取名称
@@ -50,6 +51,7 @@ export const buildStyle = async (charPattern:MatchPattern)=>{
             const ps = await collectCharPrompt(charname,maintag);
             const pps = await extractPrompt(ps,{
                 reserve:['figure'],
+                exclude:['character'],
                 minrep:3
             });
             //获取名称
