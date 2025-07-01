@@ -7,7 +7,7 @@ import sharp from "sharp";
 export const CmdResizeImage = (program: Command) => program
     .command("Resize-Image")
     .alias("resizeimage")
-    .description("将图片安整数倍缩放并转为png")
+    .description("将图片缩放并转为png")
     .argument("<input>", "输入文件夹")
     .argument("<output>", "输出文件夹")
     .requiredOption("-h, --height <number>", "目标高度",parseInt)
