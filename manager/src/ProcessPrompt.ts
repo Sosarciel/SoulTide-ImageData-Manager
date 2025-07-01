@@ -7,8 +7,8 @@ export const CmdProcessPrompt = (program: Command) => program
     .description("匹配并排除style")
     .argument("<input>", "输入prompt 逗号分隔",(str)=>str
         .replace(/[\r\n]/g,'').replace(/_/g,' ').split(',').map(v=>v.trim()))
-    .option("-w, --without", `不加入数据到词库`,true)
-    .action(async(input:string[],opt?:{without:boolean})=>{
+    .option("-a, --add", `加入数据到词库`,false)
+    .action(async(input:string[],opt?:{add:boolean})=>{
         const psd = await classificationPrompt(...input);
 
         const missed = psd.missed??[];
@@ -19,5 +19,6 @@ export const CmdProcessPrompt = (program: Command) => program
         });
 
         console.log(`missed: `,missed);
-        if(!opt?.without) await addPromptset(psd);
+
+        if(opt?.add) await addPromptset(psd);
     });
