@@ -11,7 +11,7 @@ export const CmdExtractPrompt = (program: Command) => program
     .option("-r, --reserve <list>", `保留列表 *为全部 逗号分隔 允许值为:${Object.keys(getPatternsCategory()).join('|')}`,parseStrlist)
     .action(async(input:string[],opt?:ExtractPromptOpt)=>{
         const inputmap = getPromptCountMap(input);
-        if(opt?.exclude?.[0]=="*") opt.exclude = await getPatternsCategory();
+        if(opt?.exclude?.[0]=="*") opt.exclude = (await getPatternsCategory()).map(v=>v.name);
         const {exclude,reserve} = await extractPrompt(inputmap,opt);
         console.log(`exclude:\n${exclude.join(', ')}`);
         console.log(`reserve:\n${reserve.join(', ')}`);

@@ -1,5 +1,5 @@
 import { Command } from 'commander';
-import {addPromptset, classificationPrompt, ExtractPromptOpt, getPatternsCategory} from '@sosarciel-stablediffusion/imagedata-prompt-classifier';
+import {addPromptset, classificationPrompt } from '@sosarciel-stablediffusion/imagedata-prompt-classifier';
 
 export const CmdProcessPrompt = (program: Command) => program
     .command("Process-Prompt")
