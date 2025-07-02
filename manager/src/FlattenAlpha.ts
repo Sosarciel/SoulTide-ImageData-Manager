@@ -2,6 +2,7 @@ import { Command } from "commander";
 import path from "pathe";
 import sharp from "sharp";
 import { UtilFT, eitherize, match, Stream, Success, Failed } from "@zwa73/utils";
+import fs from "fs";
 
 /** 将图像中 alpha > 0 的所有像素设为 alpha = 255 */
 async function flattenAlphaToOpaque(inputPath: string, outputPath: string) {
@@ -12,9 +13,9 @@ async function flattenAlphaToOpaque(inputPath: string, outputPath: string) {
     const channels = 4;
 
     for (let i = 0; i < raw.length; i += channels) {
-        if (raw[i + 3] !== 0) {
-            raw[i + 3] = 255; // 设为完全不透明
-        }
+        if (raw[i + 3] < 128)
+            raw[i + 3] = 0;
+        else raw[i + 3] = 255; // 设为完全不透明
     }
 
     await sharp(raw, { raw: { width: width!, height: height!, channels } })
@@ -30,7 +31,7 @@ export const CmdFlattenAlpha = (program: Command) =>
         .argument("<input>", "输入文件夹")
         .argument("<output>", "输出文件夹")
         .action(async (input: string, output: string) => {
-            const files = await UtilFT.fileSearchGlob(input, "**/*.{png}");
+            const files = await UtilFT.fileSearchGlob(input, "**/*.png");
             const op = eitherize(flattenAlphaToOpaque);
 
             await Stream.from(files, 8)
