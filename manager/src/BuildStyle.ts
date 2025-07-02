@@ -5,7 +5,7 @@ import { INFO_FILE_NAME, PROCESSED_DIR_NAME, STYLE_FILE_NAME, TrainingSetInfo } 
 import { UtilFT } from '@zwa73/utils';
 import { collectCharPrompt } from './CollectCharPrompt';
 import fs from 'fs';
-import { ExtractPromptResult, extractPrompt, getPatternsCategory } from '@sosarciel-stablediffusion/imagedata-prompt-classifier';
+import { ExtractPromptResult, extractPrompt } from '@sosarciel-stablediffusion/imagedata-prompt-classifier';
 
 
 
@@ -32,7 +32,7 @@ export const buildStyle = async (charPattern:MatchPattern)=>{
             //提取子标签
             const ps = await collectCharPrompt(charname,subtag);
             const pps = await extractPrompt(ps,{
-                reserve:['figure','clothing'],
+                include:['figure','clothing'],
                 exclude:['footwear','character'],
                 minrep:2
             });
@@ -50,7 +50,7 @@ export const buildStyle = async (charPattern:MatchPattern)=>{
             //提取子标签
             const ps = await collectCharPrompt(charname,maintag);
             const pps = await extractPrompt(ps,{
-                reserve:['figure'],
+                include:['figure'],
                 exclude:['character'],
                 minrep:3
             });
