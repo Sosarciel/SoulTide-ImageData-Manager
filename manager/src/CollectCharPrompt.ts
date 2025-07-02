@@ -1,8 +1,6 @@
 import { Command } from 'commander';
 import path from 'pathe';
-import { DATA_PATH } from './Config.schema';
 import { UtilFT } from '@zwa73/utils';
-import { dir } from 'console';
 import fs from 'fs';
 import { matchCharDir } from './Util';
 
