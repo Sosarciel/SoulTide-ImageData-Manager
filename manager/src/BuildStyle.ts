@@ -5,7 +5,7 @@ import { INFO_FILE_NAME, PROCESSED_DIR_NAME, STYLE_FILE_NAME, TrainingSetInfo } 
 import { UtilFT } from '@zwa73/utils';
 import { collectCharPrompt } from './CollectCharPrompt';
 import fs from 'fs';
-import { ExtractPromptResult, extractPrompt } from '@sosarciel-stablediffusion/imagedata-prompt-classifier';
+import { ExtractPromptResult, extractPrompt, getPatternsCategory } from '@sosarciel-stablediffusion/imagedata-prompt-classifier';
 
 
 
@@ -30,37 +30,55 @@ export const buildStyle = async (charPattern:MatchPattern)=>{
         //获取子标签提示
         for(const subtag of subTags){
             //提取子标签
-            const ps = await collectCharPrompt(charname,subtag);
-            const pps = await extractPrompt(ps,{
-                include:['figure','clothing'],
-                exclude:['footwear','character'],
+            const prompts = await collectCharPrompt(charname,subtag);
+
+            const midPrompts = await extractPrompt(prompts,{
+                //保留全部 人物主体/服装
+                reserve:['figure','clothing'],
+                //仅明确排除已知项 避免includes划定范围
+                exclude:(await getPatternsCategory()).map(v=>v.name),
                 minrep:2
             });
+            const processedPrompts = await extractPrompt(midPrompts.reserve,{
+                //明确排除全部 脚部服装/特定角色
+                exclude:['footwear','character']
+            });
+            processedPrompts.exclude.push(...midPrompts.exclude);
+
             //获取名称
             const subtagformat = /^st(.+?)-c(.+)$/;
             const subtagname = subtagformat.exec(subtag);
             if(subtagname==null) throw `${charname} ${subtag} 子标签名称不符合格式`;
             const pname = charname+capitalizeFirstLetter(subtagname[2]);
-            pps.reserve = [`st${subtagname[1]}`,subtag,'1girl',...pps.reserve.filter(s=>!tags.includes(s))];
-            outobj[pname] = pps;
+            processedPrompts.reserve = [`st${subtagname[1]}`,subtag,'1girl',...processedPrompts.reserve.filter(s=>!tags.includes(s))];
+            outobj[pname] = processedPrompts;
         }
 
         //获取纯提示
         for(const maintag of mainTags){
             //提取子标签
-            const ps = await collectCharPrompt(charname,maintag);
-            const pps = await extractPrompt(ps,{
-                include:['figure'],
-                exclude:['character'],
+            const prompts = await collectCharPrompt(charname,maintag);
+
+            const midPrompts = await extractPrompt(prompts,{
+                //保留全部 人物主体
+                reserve:['figure'],
+                //仅明确排除已知项 避免includes划定范围
+                exclude:(await getPatternsCategory()).map(v=>v.name),
                 minrep:3
             });
+            const processedPrompts = await extractPrompt(midPrompts.reserve,{
+                //明确排除全部 脚部服装/特定角色
+                exclude:['footwear','character']
+            });
+            processedPrompts.exclude.push(...midPrompts.exclude);
+
             //获取名称
             const tagformat = /^st([^-]+)$/;
             const tagname = tagformat.exec(maintag);
             if(tagname==null) throw `${charname} ${maintag} 标签名称不符合格式`;
             const pname = charname+'Pure';
-            pps.reserve = [maintag,'1girl',...pps.reserve.filter(s=>!tags.includes(s))];
-            outobj[pname] = pps;
+            processedPrompts.reserve = [maintag,'1girl',...processedPrompts.reserve.filter(s=>!tags.includes(s))];
+            outobj[pname] = processedPrompts;
         }
 
         //生成文本
