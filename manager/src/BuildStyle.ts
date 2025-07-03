@@ -32,18 +32,16 @@ export const buildStyle = async (charPattern:MatchPattern)=>{
             //提取子标签
             const prompts = await collectCharPrompt(charname,subtag);
 
-            const midPrompts = await extractPrompt(prompts,{
-                //保留全部 人物主体/服装
-                reserve:['figure','clothing'],
-                //仅明确排除已知项 避免includes划定范围
-                exclude:(await getPatternsCategory()).map(v=>v.name),
-                minrep:2
-            });
-            const processedPrompts = await extractPrompt(midPrompts.reserve,{
-                //明确排除全部 脚部服装/特定角色
-                exclude:['footwear','character']
-            });
-            processedPrompts.exclude.push(...midPrompts.exclude);
+            const processedPrompts = await extractPrompt(prompts,{
+                    //保留全部 人物主体/服装
+                    reserve:['figure','clothing'],
+                    //仅明确排除已知项 避免includes划定范围
+                    exclude:['pattern'],
+                    minrep:2
+                }).then(result => result.extractPrompt({
+                    //明确排除全部 脚部服装/特定角色
+                    exclude:['footwear','character']
+                }));
 
             //获取名称
             const subtagformat = /^st(.+?)-c(.+)$/;
@@ -59,18 +57,16 @@ export const buildStyle = async (charPattern:MatchPattern)=>{
             //提取子标签
             const prompts = await collectCharPrompt(charname,maintag);
 
-            const midPrompts = await extractPrompt(prompts,{
-                //保留全部 人物主体
-                reserve:['figure'],
-                //仅明确排除已知项 避免includes划定范围
-                exclude:(await getPatternsCategory()).map(v=>v.name),
-                minrep:3
-            });
-            const processedPrompts = await extractPrompt(midPrompts.reserve,{
-                //明确排除全部 脚部服装/特定角色
-                exclude:['footwear','character']
-            });
-            processedPrompts.exclude.push(...midPrompts.exclude);
+            const processedPrompts = await extractPrompt(prompts,{
+                    //保留全部 人物主体
+                    reserve:['figure'],
+                    //仅明确排除已知项 避免includes划定范围
+                    exclude:['pattern'],
+                    minrep:3
+                }).then(result => result.extractPrompt({
+                    //明确排除全部 脚部服装/特定角色
+                    exclude:['footwear','character']
+                }));
 
             //获取名称
             const tagformat = /^st([^-]+)$/;
