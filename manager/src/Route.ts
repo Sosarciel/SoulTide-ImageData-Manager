@@ -17,6 +17,7 @@ import { CmdBuildMetadata } from "./BuildMetadata";
 import { CmdBuildConfig } from "./BuildConfig";
 import { CmdFixFileext } from "./FixFileext";
 import { CmdFlattenAlpha } from "./FlattenAlpha";
+import { CmdConvertGif } from "./ConvertGif";
 
 export async function cliRoute() {
     CmdAddBG(program);
@@ -37,6 +38,7 @@ export async function cliRoute() {
     CmdBuildConfig(program);
     CmdFixFileext(program);
     CmdFlattenAlpha(program);
+    CmdConvertGif(program);
     program.parse(process.argv);
 }
 cliRoute();
