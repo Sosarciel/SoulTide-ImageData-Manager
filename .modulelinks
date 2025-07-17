@@ -4,6 +4,6 @@
 [submodule "zwa73/SoulTide-ImageData-Dataset"]
 	path = dataset
 	url = https://huggingface.co/datasets/zwa73/SoulTide-ImageData-Dataset.git
-[submodule "zwa73/SoulTide-ImageData-Dataset"]
+[submodule "zwa73/SoulTide-ImageData-Model"]
 	path = model
 	url = https://huggingface.co/zwa73/SoulTide-ImageData-Model
