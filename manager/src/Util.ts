@@ -3,8 +3,6 @@ import { DATA_PATH } from "./Config.schema";
 const gifFrames = require('gif-frames');
 import fs from 'fs';
 import path from "path";
-import csvstringify from 'csv-stringify';
-import csvparse from 'csv-parse';
 
 /**导出Gif第一帧 */
 export async function extractFirstFrameToPNG(gifPath: string, outputPath: string): Promise<void> {
@@ -50,23 +48,6 @@ export async function matchCharDir(charPattern:MatchPattern){
     return charlist
         .filter(charname=>psdList.some(p=>p.test(charname)))
         .map(c=>path.join(DATA_PATH,c));
-}
-
-export type StyleCsv = { name: string, prompt: string, negative_prompt: string }[];
-
-export const CSV = {
-    stringify:(json:Record<string,number|string>[])=>new Promise<string>((resolve,reject)=>{
-        csvstringify.stringify(json, (err, output) => {
-            if (err) reject(err);
-            resolve(output);
-        });
-    }),
-    parse:(str:string)=>new Promise<string[][]>((resolve,reject)=>{
-        csvparse.parse(str, (err, output) => {
-            if (err) reject(err);
-            resolve(output);
-        });
-    }),
 }
 
 export type CombineImageOptions = {

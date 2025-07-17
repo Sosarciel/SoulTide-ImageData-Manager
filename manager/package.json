@@ -4,8 +4,6 @@
     "@zwa73/js-utils": "^1.0.32",
     "@zwa73/utils": "^1.0.226",
     "commander": "^11.1.0",
-    "csv-parse": "^5.5.6",
-    "csv-stringify": "^6.5.1",
     "gif-frames": "^1.0.1",
     "sharp": "^0.32.6"
   },

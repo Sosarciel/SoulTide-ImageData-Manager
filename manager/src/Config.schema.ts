@@ -18,12 +18,6 @@ export const DATA_PATH = path.join(ROOT_PATH,'dataset','character');
 export const MANAGER_PATH = path.join(ROOT_PATH,'manager');
 export const STYLES_PATH = path.join(MANAGER_PATH,'styles');
 
-export const STYLE_BASE_PATH = path.join(STYLES_PATH,'styles_base.csv');
-export const STYLE_OTHER_PATH = path.join(STYLES_PATH,'styles_other.txt');
-export const STYLE_SCENE_PATH = path.join(STYLES_PATH,'styles_scene.txt');
-export const STYLE_PATH = path.join(STYLES_PATH,'styles.csv');
-
-
 export const getResourceDir = (charName: string) => path.join(DATA_PATH,charName,RESOURCES_DIR_NAME);
 export const getCategorizedDir = (charName: string) => path.join(DATA_PATH,charName,CATEGORUZED_DIR_NAME);
 export const getProcessedDir = (charName: string) => path.join(DATA_PATH,charName,PROCESSED_DIR_NAME);

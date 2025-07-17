@@ -6,5 +6,6 @@ backup
 test
 
 ImageData-Prompt-Classifier
+ImageData-Prompt-Styles
 dataset
 model

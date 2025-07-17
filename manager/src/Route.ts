@@ -8,7 +8,6 @@ import { CmdExtractFirstFrame } from "./ExtractFirstFrame";
 import { CmdExtractPrompt } from "./ExtractPrompt";
 import { CmdCollectCharPrompt } from "./CollectCharPrompt";
 import { CmdBuildStyle } from "./BuildStyle";
-import { CmdMergeStyle } from "./MergeStyle";
 import { CmdProcessPrompt } from "./ProcessPrompt";
 import { CmdScaleImage } from "./ScaleImage";
 import { CmdEvalLog } from "./EvalLog";
@@ -30,7 +29,6 @@ export async function cliRoute() {
     CmdProcessPrompt(program);
     CmdCollectCharPrompt(program);
     CmdBuildStyle(program);
-    CmdMergeStyle(program);
     CmdScaleImage(program);
     CmdEvalLog(program);
     CmdResizeImage(program);

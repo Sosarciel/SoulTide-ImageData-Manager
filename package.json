@@ -1,7 +1,8 @@
 {
     "workspaces": [
         "./manager",
-        "./ImageData-Prompt-Classifier"
+        "./ImageData-Prompt-Classifier",
+        "./ImageData-Prompt-Styles"
     ],
     "dependencies": {
         "@zwa73/js-utils": "^1.0.21",
