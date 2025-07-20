@@ -2,6 +2,11 @@ import { Command } from 'commander';
 import {addPromptset, ExtractPromptOpt, extractPrompt, getPatternsCategory} from '@sosarciel-stablediffusion/imagedata-prompt-classifier';
 import { parseStrlist } from './Util';
 
+
+const escape = (str:string)=>{
+    return str.replace(/(\(|\))/g,'\\$1')
+}
+
 export const CmdExtractPrompt = (program: Command) => program
     .command("Extract-Prompt")
     .alias("extractprompt")
@@ -13,6 +18,6 @@ export const CmdExtractPrompt = (program: Command) => program
     .action(async(input:string[],opt?:ExtractPromptOpt)=>{
         //if(opt?.exclude?.[0]=="*") opt.exclude = (await getPatternsCategory()).map(v=>v.name);
         const {exclude,reserve} = await extractPrompt(input,opt);
-        console.log(`exclude:\n${exclude.join(', ')}`);
-        console.log(`reserve:\n${reserve.join(', ')}`);
+        console.log(`exclude:\n${escape(exclude.join(', '))}`);
+        console.log(`reserve:\n${escape(reserve.join(', '))}`);
 });
