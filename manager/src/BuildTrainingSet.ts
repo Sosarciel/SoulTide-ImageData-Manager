@@ -31,7 +31,7 @@ export const CmdBuildTrainingSet = (program: Command) => program
                 //概念训练次数
                 const trainCount = typeObj["train_count"];
                 //带数字的概念名
-                const buildTypeName = `${trainCount}_${typeName}`;
+                const buildTypeName = `${trainCount}_${typeObj.identifier}`;
                 //概念文件夹
                 const typeFolder = path.join(buildFolder,buildTypeName);
                 console.log(typeFolder)
@@ -59,10 +59,9 @@ export const CmdBuildTrainingSet = (program: Command) => program
                     const ext = path.extname(fileName);
                     if(ext!=".txt") continue;
                     const fullpath = path.join(typeFolder,fileName);
-                    /**@type string */
-                    let str = fs.readFileSync(fullpath,"utf-8");
+                    const str = await fs.promises.readFile(fullpath,"utf-8");
                     //console.log(str)
-                    let list = str.split(", ");
+                    const list = str.split(", ");
                     list.push(...typeTags??[]);
                     //添加下划线
                     //list = list.map(element => {

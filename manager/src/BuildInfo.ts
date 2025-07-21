@@ -56,13 +56,18 @@ export const CmdBuildInfo = (program: Command) => program
                     console.log(`${dir.name} 文件夹下没有文件 已跳过`);
                     continue;
                 }
+
+                const flatname = `st${charName.toLocaleLowerCase().replace('@','')}`
+
                 info[formatName]= typeName=='other'? {
                     folder_list:[dir.name],
-                    tags:[`st${charName.toLocaleLowerCase()}`],
+                    identifier:flatname,
+                    tags:[flatname],
                     train_count:count
                 } : {
                     folder_list:[dir.name],
-                    tags:[`st${charName.toLocaleLowerCase()}`,`st${charName.toLocaleLowerCase()}-c${typeName}`],
+                    identifier:`${flatname}-c${typeName}`,
+                    tags:[`${flatname}`,`${flatname}-c${typeName}`],
                     train_count:count
                 }
             }
