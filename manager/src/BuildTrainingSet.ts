@@ -31,7 +31,7 @@ export const CmdBuildTrainingSet = (program: Command) => program
                 //概念训练次数
                 const trainCount = typeObj["train_count"];
                 //带数字的概念名
-                const buildTypeName = `${trainCount}_${typeObj.identifier}`;
+                const buildTypeName = `${trainCount}_${typeName}`;
                 //概念文件夹
                 const typeFolder = path.join(buildFolder,buildTypeName);
                 console.log(typeFolder)

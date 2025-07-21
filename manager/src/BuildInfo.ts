@@ -61,12 +61,10 @@ export const CmdBuildInfo = (program: Command) => program
 
                 info[formatName]= typeName=='other'? {
                     folder_list:[dir.name],
-                    identifier:flatname,
                     tags:[flatname],
                     train_count:count
                 } : {
                     folder_list:[dir.name],
-                    identifier:`${flatname}-c${typeName}`,
                     tags:[`${flatname}`,`${flatname}-c${typeName}`],
                     train_count:count
                 }

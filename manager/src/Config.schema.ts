@@ -7,7 +7,6 @@ export type TrainingSetInfo = {
     [key: string]: {
         train_count: number;
         folder_list: string[];
-        identifier: string;
         tags?: string[];
         exclude_tags?: string[];
     };
