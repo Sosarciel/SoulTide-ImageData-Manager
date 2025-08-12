@@ -5,7 +5,7 @@ dist
 backup
 test
 
-ImageData-Prompt-Classifier
-ImageData-Prompt-Styles
+Prompt-Classifier
+Style-Manager
 dataset
 model

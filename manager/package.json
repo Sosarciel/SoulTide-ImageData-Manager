@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@sosarciel-stablediffusion/imagedata-prompt-classifier": "^1.0.0",
+    "@sosarciel-stablediffusion/prompt-classifier": "^1.0.0",
     "@zwa73/js-utils": "^1.0.32",
     "@zwa73/utils": "^1.0.226",
     "commander": "^11.1.0",
