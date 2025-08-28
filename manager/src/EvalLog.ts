@@ -17,15 +17,17 @@ saving checkpoint: /root/autodl-tmp/output/Juewa-000045.safetensors
 
 
 const getStepData = (text:string)=>{
-    const matchIter = text.replace('\r\n','\n').matchAll(/avr_loss=([0-9.]+)\]\n.+\/(.+)\.safetensors/g);
+    const matchIter = text
+        .replaceAll('\r\n','\n')
+        .matchAll(/avr_loss=([0-9.]+)\]\n.+\/(.+)\.safetensors/g);
     return [...matchIter].map(m=>({
-            epoch:m[2],loss:parseFloat(m[1])
-        }))
-        .sort((a,b)=>s2l(a.loss,b.loss))
-        .reduce((acc,cur)=>({
-            ...acc,
-            [cur.epoch]:cur.loss
-        }),{} as Record<string,number>)
+        epoch:m[2],loss:parseFloat(m[1])
+    }))
+    .sort((a,b)=>s2l(a.loss,b.loss))
+    .reduce((acc,cur)=>({
+        ...acc,
+        [cur.epoch]:cur.loss
+    }),{} as Record<string,number>)
 }
 
 
