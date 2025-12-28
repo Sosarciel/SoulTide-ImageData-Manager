@@ -1,8 +1,8 @@
 {
   "dependencies": {
     "@sosarciel-stablediffusion/prompt-classifier": "^1.0.0",
-    "@zwa73/js-utils": "^1.0.32",
-    "@zwa73/utils": "^1.0.226",
+    "@zwa73/js-utils": "^1.0.74",
+    "@zwa73/utils": "^1.0.280",
     "commander": "^11.1.0",
     "gif-frames": "^1.0.1",
     "sharp": "^0.32.6"

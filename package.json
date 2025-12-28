@@ -3,9 +3,5 @@
         "./manager",
         "./Prompt-Classifier",
         "./Style-Manager"
-    ],
-    "dependencies": {
-        "@zwa73/js-utils": "^1.0.21",
-        "@zwa73/utils": "^1.0.216"
-    }
+    ]
 }
