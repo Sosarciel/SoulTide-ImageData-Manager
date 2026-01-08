@@ -1,4 +1,5 @@
 **/model/**/*.zip
+**/model/**/*.7z
 **/model/**/*.safetensors
 node_modules/**
 other/**
