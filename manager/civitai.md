@@ -30,7 +30,7 @@
 - **Compatibility:** Works with other **Illustrious-series** models
 ---
 ## About the version number
-- **Pony:** 具体版本号数字为数据集与训练方式版本, 最高版本号为**Pony**下的最新的推荐版本, 但目前均落后于**IL**
-- **IL / ILLC / ILWAILC:** 具体版本号数字为数据集版本, 最高版本号为**IL / ILLC / ILWAILC**三者下的最终版本, 同版本号如**ILV1.0 / ILLCV1.0**表示为使用相同数据集, 仅训练方式不同
+- **Pony:** 具体版本号数字为数据集与训练方式版本, 最高版本号为 **Pony** 下的最新的推荐版本, 但目前均落后于 **IL**
+- **IL / ILLC / ILWAILC:** 具体版本号数字为数据集版本, 最高版本号为 **IL / ILLC / ILWAILC** 三者下的最终版本, 同版本号如 **ILV1.0 / ILLCV1.0** 表示为使用相同数据集, 仅训练方式不同
 - **Pony:** The version number represents the dataset and training method version. The highest version number indicates the latest recommended version under **Pony**, though all Pony versions currently lag behind **IL**.
 - **IL / ILLC / ILWAILC:** The version number represents the dataset version. The highest version number is the final version across **IL / ILLC / ILWAILC**. Identical version numbers such as **ILV1.0 / ILLCV1.0** indicate that they use the same dataset but differ only in training method.
