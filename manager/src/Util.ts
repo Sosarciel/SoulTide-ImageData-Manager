@@ -1,8 +1,8 @@
 import sharp from "sharp";
 import { DATA_PATH } from "./Config.schema";
-const gifFrames = require('gif-frames');
 import fs from 'fs';
 import path from "path";
+const gifFrames = require('gif-frames');
 
 /**导出Gif第一帧 */
 export async function extractFirstFrameToPNG(gifPath: string, outputPath: string): Promise<void> {
@@ -104,6 +104,111 @@ export async function combineImages(options: CombineImageOptions): Promise<void>
 
     // Output the combined image to the specified file path
     await canvas.png().toFile(outpath);
+}
+
+export type CombineGridImageOptions = {
+    inpaths: string[][];
+    outpath: string;
+    /**
+     * direction: 第一维的排列方向
+     * - 'horizontal' (默认): 第一维是行(Row)。例如 [[左上, 右上], [左下, 右下]]
+     * - 'vertical': 第一维是列(Column)。例如 [[左上, 左下], [右上, 右下]]
+     */
+    direction?: 'horizontal' | 'vertical';
+}
+
+export async function combineGridImages(options: CombineGridImageOptions): Promise<void> {
+    const { inpaths, outpath, direction = 'horizontal' } = options;
+
+    if (!inpaths || inpaths.length === 0 || inpaths.every(arr => arr.length === 0)) {
+        throw new Error('No images provided');
+    }
+
+    // 1. 数据标准化：无论输入什么 direction，我们都统一转换为 "先行后列 (Row-Major)" 格式 [行][列]
+    let gridPaths: string[][] = [];
+    if (direction === 'horizontal') {
+        gridPaths = inpaths;
+    } else {
+        // 矩阵转置：将 Column-Major 转为 Row-Major
+        const numCols = inpaths.length;
+        const numRows = Math.max(...inpaths.map(col => col.length));
+        for (let r = 0; r < numRows; r++) {
+            gridPaths[r] = [];
+            for (let c = 0; c < numCols; c++) {
+                gridPaths[r][c] = inpaths[c]?.[r]; // 容错处理缺省元素
+            }
+        }
+    }
+
+    const numRows = gridPaths.length;
+    const numCols = Math.max(...gridPaths.map(row => row.length));
+
+    // 2. 并行加载所有图片和元数据 (保留 2D 结构)
+    const gridData = await Promise.all(
+        gridPaths.map(row =>
+            Promise.all(row.map(async (imgpath) => {
+                if (!imgpath) return null; // 处理空位
+                const buffer = await sharp(imgpath).toBuffer();
+                const metadata = await sharp(buffer).metadata();
+                return {
+                    buffer,
+                    width: metadata.width ?? 0,
+                    height: metadata.height ?? 0
+                };
+            }))
+        )
+    );
+
+    // 3. 动态计算每一列的宽度和每一行的高度 (自适应不同尺寸的图片)
+    const colWidths = new Array(numCols).fill(0);
+    const rowHeights = new Array(numRows).fill(0);
+
+    for (let r = 0; r < numRows; r++) {
+        for (let c = 0; c < numCols; c++) {
+            const data = gridData[r][c];
+            if (data) {
+                colWidths[c] = Math.max(colWidths[c], data.width);
+                rowHeights[r] = Math.max(rowHeights[r], data.height);
+            }
+        }
+    }
+
+    // 计算总画布尺寸
+    const outputWidth = colWidths.reduce((sum, w) => sum + w, 0);
+    const outputHeight = rowHeights.reduce((sum, h) => sum + h, 0);
+
+    // 4. 计算每张图片的绝对坐标 (left, top)
+    const compositeOptions: sharp.OverlayOptions[] = [];
+    let currentY = 0;
+
+    for (let r = 0; r < numRows; r++) {
+        let currentX = 0;
+        for (let c = 0; c < numCols; c++) {
+            const data = gridData[r][c];
+            if (data) {
+                compositeOptions.push({
+                    input: data.buffer,
+                    left: currentX,
+                    top: currentY
+                });
+            }
+            currentX += colWidths[c]; // X 轴向右推进当前列的宽度
+        }
+        currentY += rowHeights[r]; // Y 轴向下推进当前行的高度
+    }
+
+    // 5. 渲染输出
+    await sharp({
+        create: {
+            width: outputWidth,
+            height: outputHeight,
+            channels: 4,
+            background: { r: 255, g: 255, b: 255, alpha: 0 } // 透明背景兜底
+        }
+    })
+    .composite(compositeOptions)
+    .png()
+    .toFile(outpath);
 }
 
 //const options: CombineImageOptions = {
