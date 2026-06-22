@@ -16,7 +16,7 @@ tagger:WD14 moat tagger v2
 Weight threshold:0.3
 Min tag fraction in batch and interrogations:0
 
-ILV1.0 - char
+ILV1.0 / AnimaTagFlow - char
 base:hassakuXLIllustrious_v21fix.safetensors
 w:768 h:1024
 l2d:2全身1半身
