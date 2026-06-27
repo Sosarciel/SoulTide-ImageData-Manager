@@ -45,25 +45,25 @@ const parseRegion = (v?:string)=>{
 export const CmdEvalLog = (program: Command) => program
     .command("Eval-Log")
     .alias("evallog")
-    .description("检查log并进行排序")
-    .argument("<logPath>", "需要检查的log文件目录")
-    .option("-w, --window-size <number>", "每次选取的窗口大小",parseRegion)
-    .option("-r, --region <number>", "选取范围",parseRegion)
-    .option("-f, --first-min <number>", "首条最小epoch",parseInt,0)
+    .description("检查 log 并按照 Loss 排序过滤")
+    .argument("<logPath>", "需要检查的 log 文件路径")
+    .option("-s, --stride-range <string>", "滑窗裁剪的步幅范围 (如 15_30)", parseRegion, {min:15,max:30})
+    .option("-c, --clip-range <string>", "滑窗裁剪的全局 Epoch 边界 (如 15_100)", parseRegion, {min:15,max:100})
+    .option("-f, --start-floor <number>", "首次裁剪的初始 Epoch 下限门槛", v=>parseInt(v), 80)
     .action(async (logPath:string,opt:{
-        windowSize?:Region,
-        region?:Region,
-        firstMin?:number,
+        strideRange?:Region,
+        clipRange?:Region,
+        startFloor?:number,
     })=>{
         const {
-            windowSize,
-            region = {min:0,max:Infinity},
-            firstMin = 0,
+            strideRange,
+            clipRange = {min:0,max:Infinity},
+            startFloor = 0,
         } = opt;
         const fileText = await fs.promises.readFile(logPath,'utf-8');
         const data = getStepData(fileText);
         console.table(data);
-        if(windowSize!=undefined){
+        if(strideRange!=undefined){
             // 展开
             const list = Object.entries(data).map(v=>{
                 const match = v[0].match(/-(\d+)$/);
@@ -79,17 +79,17 @@ export const CmdEvalLog = (program: Command) => program
 
             // 多次选取
             const itemList:{name:string,epoch:number,loss:number}[] = [];
-            const sliceList = list.filter(({epoch})=>epoch>region.min && epoch<region.max);
+            const sliceList = list.filter(({epoch})=>epoch>clipRange.min && epoch<clipRange.max);
             const getItem = (curr:number,min?:number)=>{
                 return sliceList.find(({epoch})=>{
                     return min!=undefined
-                        ? curr-region.min > epoch && epoch>min
-                        : curr-region.min > epoch && curr-region.max<epoch
+                        ? curr-strideRange.min > epoch && epoch>min
+                        : curr-strideRange.min > epoch && curr-strideRange.max<epoch
                 })
             }
             let currEpoch = Infinity;
             while(true){
-                const item = getItem( currEpoch, currEpoch==Infinity ? firstMin : undefined);
+                const item = getItem( currEpoch, currEpoch==Infinity ? startFloor : undefined);
                 if(item==undefined) break;
                 currEpoch = item.epoch;
                 itemList.push(item);
