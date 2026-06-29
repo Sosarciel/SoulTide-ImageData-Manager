@@ -72,14 +72,14 @@ export const CmdEvalLog = (program: Command) => program
             }).sort((a,b)=>s2l(a.loss,b.loss));
 
             // 确定last
-            const lastepoch = list.find(v=>v.epoch==Infinity);
+            const lastepoch = list.find(v=>isNaN(v.epoch));
             if(lastepoch!=undefined)
                 lastepoch.epoch = list.reduce((acc,{epoch})=>
                     epoch!=Infinity&&acc<=epoch ? epoch+1 : acc,0);
 
             // 多次选取
             const itemList:{name:string,epoch:number,loss:number}[] = [];
-            const sliceList = list.filter(({epoch})=>epoch>clipRange.min && epoch<clipRange.max);
+            const sliceList = list.filter(({epoch})=>epoch>=clipRange.min && epoch<=clipRange.max);
             const getItem = (curr:number,min?:number)=>{
                 return sliceList.find(({epoch})=>{
                     return min!=undefined
