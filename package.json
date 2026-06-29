@@ -2,6 +2,7 @@
     "workspaces": [
         "./manager",
         "./Prompt-Classifier",
-        "./Style-Manager"
+        "./Style-Manager",
+        "./ComfyUI-Server"
     ]
 }
