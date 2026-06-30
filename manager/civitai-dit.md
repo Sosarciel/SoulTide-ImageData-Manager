@@ -1,9 +1,9 @@
 <div style="font-size: 1.2em;">
-时装和纯样式提示词请参考标准提示样例图片与版本说明。
+时装和纯样式提示词请参考标准提示样例图片与 [版本变更说明 (About this version)]。
 <br/>
 <strong>这是 DiT 版本。</strong> 传统 Diffusion 模型版本 (SD1.5 / Pony / Illustrious) 请直接前往本页面的 [推荐资源 (Suggested Resources)] 栏目查看。
 <br/><br/>
-For fashion and pure style prompts, please refer to the standard prompt sample pictures and version notes.
+For fashion and pure style prompts, please refer to the standard prompt sample pictures and [About this version].
 <br/>
 <strong>This is the DiT version.</strong> For traditional Diffusion models (SD1.5 / Pony / Illustrious), please check the [Suggested Resources] section on this page.
 </div>
