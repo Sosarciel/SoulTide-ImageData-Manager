@@ -1,3 +1,14 @@
+<div style="font-size: 1.2em;">
+时装和纯样式提示词请参考标准提示样例图片与版本说明。
+<br/>
+<strong>这是传统 Diffusion 模型版本。</strong> DiT 模型版本 (Anima) 请直接前往本页面的 [推荐资源 (Suggested Resources)] 栏目查看。
+<br/><br/>
+For fashion and pure style prompts, please refer to the standard prompt sample pictures and version notes.
+<br/>
+<strong>This is the DiT version.</strong> For traditional Diffusion models (SD1.5 / Pony / Illustrious), please check the [Suggested Resources] section on this page.
+</div>
+<br/>
+
 # 版本说明 Version Descriptions
 ## Pony
 - **基础模型:** [**MugenMaluMix SDXL**](https://civitai.com/models/345933/mugenmalumix-sdxl) - **v4.2**
@@ -9,13 +20,13 @@
 ---
 ## IL
 - **基础模型:** [**Hassaku XL (Illustrious)**](https://civitai.com/models/140272?modelVersionId=1617798) - **v2.1fix**
-- **兼容性:** 可在其他 **Illustrious** 系列系列模型上使用
+- **兼容性:** 可在其他 **Illustrious** 系列模型上使用
 - **训练方式:** **Lora**
 - **备注:** 若使用 **Hassaku XL (Illustrious)**，请避免使用 **v2.1fix 以上版本**
 - **Base Model:** [**Hassaku XL (Illustrious)**](https://civitai.com/models/140272?modelVersionId=1617798) - **v2.1fix**
 - **Compatibility:** Works with other **Illustrious-series** models
-- **Note:** If you are using **Hassaku XL (Illustrious)**, avoid versions **above v2.1fix**
 - **Training Method:** **Lora**
+- **Note:** If you are using **Hassaku XL (Illustrious)**, avoid versions **above v2.1fix**
 ---
 ## ILLC
 - 同 **IL** 版本，但使用 **LyCORIS LoCon** 方式训练
