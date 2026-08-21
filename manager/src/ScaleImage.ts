@@ -7,7 +7,7 @@ import sharp from "sharp";
 export const CmdScaleImage = (program: Command) => program
     .command("Scale-Image")
     .alias("scaleimage")
-    .description("将图片安整数倍缩放并转为png")
+    .description("将图片按整数倍缩放并转为png")
     .argument("<input>", "输入文件夹")
     .argument("<output>", "输出文件夹")
     .requiredOption("-s, --scale <number>", `缩放倍率`,Number)
