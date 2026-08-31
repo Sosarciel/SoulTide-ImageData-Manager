@@ -9,4 +9,7 @@ Prompt-Classifier
 Style-Manager
 ComfyUI-Server
 dataset
-model
+modelproject-tmp.json*
+.DS_Store
+__MACOSX
+ComfyUI-Conductor
