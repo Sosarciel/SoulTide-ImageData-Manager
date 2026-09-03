@@ -3,6 +3,7 @@
         "./manager",
         "./Prompt-Classifier",
         "./Style-Manager",
-        "./ComfyUI-Server"
+        "./ComfyUI-Server",
+        "./ComfyUI-Conductor"
     ]
 }
