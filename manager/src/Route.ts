@@ -17,6 +17,7 @@ import { CmdFlattenAlpha } from "./FlattenAlpha";
 import { CmdConvertGif } from "./ConvertGif";
 import { CmdSliceImage } from "./SliceImage";
 import { CmdFlipImage } from "./FlipImage";
+import { CmdConvertPng } from "./ConvertPng";
 
 export async function cliRoute() {
     CmdAddBG(program);
@@ -37,6 +38,7 @@ export async function cliRoute() {
     CmdConvertGif(program);
     CmdSliceImage(program);
     CmdFlipImage(program);
+    CmdConvertPng(program);
     program.parse(process.argv);
 }
 cliRoute();
