@@ -1,0 +1,11 @@
+{
+    "booru-tags.filesToEnable": ["markdown", "md", "txt"],
+    "[markdown]": {
+        "editor.quickSuggestions": {
+            "other": "on",
+            "comments": "on",
+            "strings": "on"
+        },
+        "editor.wordBasedSuggestions": "off" // 避免编辑器自身抓取的杂词污染标签弹窗
+    }
+}
