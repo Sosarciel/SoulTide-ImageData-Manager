@@ -4,6 +4,7 @@
         "./Prompt-Classifier",
         "./Style-Manager",
         "./ComfyUI-Server",
-        "./ComfyUI-Conductor"
+        "./ComfyUI-Conductor",
+        "./ComfyUI-Conductor/Middleware"
     ]
 }
