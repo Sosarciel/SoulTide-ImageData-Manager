@@ -7,6 +7,7 @@
 - `Style-Manager/styles/styles.csv` 这是将所有style合并的最终文件，巨大单体csv，需小心查看
 - `ComfyUI-Conductor/Workspace/Payload/**` 存储了`ComfyUI-Conductor`代码工作流的数据提供者
 - `Prompt-Classifier/src/pattern/**` 存储了手动记录并分类的danbooru的tag
+- `Style-Manager/danbooru/data/output.csv` 用于补全插件/存在性验证的，包含全部danbooru + e621标签的巨大词表，达到6mb，绝不可直接阅读
 
 # 子项目简介
 - `Prompt-Classifier` 提供cli工具`bin/cli`，用于快速分类/过滤/提取 danbooru tag
