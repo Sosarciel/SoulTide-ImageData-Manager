@@ -9,9 +9,10 @@
 - `Prompt-Classifier/src/pattern/**` 存储了手动记录并分类的danbooru的tag
 
 # 子项目简介
-- `Prompt-Classifier` 提供一cli用于快速分类/过滤/提取 danbooru tag
+- `Prompt-Classifier` 提供cli工具`bin/cli`，用于快速分类/过滤/提取 danbooru tag
+- `Style-Manager` 提供cli工具`ts-node src/Route`，用于管理/合并style
 - `ComfyUI-Conductor` 使用`ts代码工作流`与`md文件payload`调度ComfyUI进行生图任务，并提供一个用以扩展ComfyUI后端能力的网关，以及一个单独不附带后端的ComfyUI前端启动器
 - `ComfyUI-Server` 提供一个ComfyUI插件 `ComfyUI-Server\ComfyUI-Sosarciel` 与一些ComfyUI可通过HttpPost简单调用的服务
 - `model` 上传至huggingface的模型
 - `dataset` 上传至huggingface的训练集
-- `manager` 处理dataset时常用的工具集
+- `manager` 提供cli工具`ts-node src/Route`，处理dataset时常用的工具集
