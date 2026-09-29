@@ -1,3 +1,8 @@
+# 项目结构
+- 采用同址异库的multrepo结构，通过.gitignore内将其他子模块忽略避免git的submodule系统互相污染
+- 统一使用在根目录的nodejs工作区
+- 开发工具链如jest/tsup/typescript/ts-node存在于全局
+
 # 记忆范畴
 - ComfyUI-Conductor 与 ComfyUI-Server 内的记忆高度内聚，对于 ComfyUI 相关项目，写入关于其记忆时应标记范畴 `scope=ComfyUI`
 
