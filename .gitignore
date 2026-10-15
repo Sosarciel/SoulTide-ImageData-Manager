@@ -8,6 +8,7 @@ test
 Prompt-Classifier
 Style-Manager
 ComfyUI-Server
+ComfyUI-Middleware
 dataset
 model
 project-tmp.json*
