@@ -228,8 +228,8 @@ export async function combineGridImages(options: CombineGridImageOptions): Promi
  * @param scale      - 缩放倍数（必须是正整数）
  */
 export async function scaleImageToPNG(inputPath: string, outputPath: string, scale: number): Promise<void> {
-    if (scale <= 0)
-        throw new Error("缩放倍数必须是正数");
+    //if (scale <= 0)
+    //    throw new Error("缩放倍数必须是正数");
 
     return new Promise((resolve, reject) => {
         sharp(inputPath)
@@ -238,8 +238,8 @@ export async function scaleImageToPNG(inputPath: string, outputPath: string, sca
                 if (!metadata.width || !metadata.height)
                     throw new Error("无法获取图片尺寸");
 
-                const newWidth = metadata.width * scale;
-                const newHeight = metadata.height * scale;
+                const newWidth  = Math.round(metadata.width * scale);
+                const newHeight = Math.round(metadata.height * scale);
 
                 return resizeImageToPNG(inputPath,outputPath,newWidth, newHeight);
             })

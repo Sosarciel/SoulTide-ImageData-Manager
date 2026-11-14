@@ -7,12 +7,12 @@ import sharp from "sharp";
 export const CmdScaleImage = (program: Command) => program
     .command("Scale-Image")
     .alias("scaleimage")
-    .description("将图片按整数倍缩放并转为png")
+    .description("将图片缩放并转为png")
     .argument("<input>", "输入文件夹")
     .argument("<output>", "输出文件夹")
     .requiredOption("-s, --scale <number>", `缩放倍率`,Number)
-    .requiredOption("-h, --height <number>", "允许的目标高度",parseInt)
-    .requiredOption("-w, --width <number>", "允许的目标宽度",parseInt)
+    .option("-h, --height <number>", "允许的目标高度",parseInt)
+    .option("-w, --width <number>", "允许的目标宽度",parseInt)
     .action(async (input:string,output:string,opt:{scale:number,height:number,width:number})=>{
         const gifs = await UtilFT.fileSearchGlob(input,'**/*.{jpg,png}');
         const _scaleImageToPNG = eitherize(scaleImageToPNG);
@@ -22,8 +22,9 @@ export const CmdScaleImage = (program: Command) => program
             const fulloutpath = path.join(output,rpath).replace('.jpg','.png');
             await UtilFT.ensurePathExists(path.dirname(fulloutpath),{dir:true});
             const {width,height} = await sharp(inputpath).metadata();
-            if(width!*scale!=opt.width || height!*scale!=opt.height){
-                console.error(`图片${inputpath}尺寸不符合要求`);
+            if((opt.width!=undefined && opt.height!=undefined) &&
+                (width!*scale!=opt.width || height!*scale!=opt.height)){
+                console.error(`图片${inputpath}尺寸不符合要求 w:${width} h:${height}`);
                 return;
             }
             match(

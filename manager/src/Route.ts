@@ -18,6 +18,7 @@ import { CmdConvertGif } from "./ConvertGif";
 import { CmdSliceImage } from "./SliceImage";
 import { CmdFlipImage } from "./FlipImage";
 import { CmdConvertPng } from "./ConvertPng";
+import { CmdShuffleCaption } from "./ShuffleCaption";
 
 export async function cliRoute() {
     CmdAddBG(program);
@@ -39,6 +40,7 @@ export async function cliRoute() {
     CmdSliceImage(program);
     CmdFlipImage(program);
     CmdConvertPng(program);
+    CmdShuffleCaption(program);
     program.parse(process.argv);
 }
 cliRoute();
