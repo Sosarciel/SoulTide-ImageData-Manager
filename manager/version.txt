@@ -31,3 +31,4 @@ AnimaTagFlowV2.0 - char
 MOSSTagFlowV1.0 - char
 同 `AnimaTagFlowV1.0`
 预制8打乱tag变体
+预热约3.3% 约 文件数*1.5

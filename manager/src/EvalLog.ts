@@ -83,8 +83,8 @@ export const CmdEvalLog = (program: Command) => program
             const getItem = (curr:number,min?:number)=>{
                 return sliceList.find(({epoch})=>{
                     return min!=undefined
-                        ? curr-strideRange.min > epoch && epoch>min
-                        : curr-strideRange.min > epoch && curr-strideRange.max<epoch
+                        ? curr-strideRange.min >= epoch && epoch>min
+                        : curr-strideRange.min >= epoch && curr-strideRange.max<=epoch
                 })
             }
             let currEpoch = Infinity;
