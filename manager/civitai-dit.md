@@ -18,6 +18,20 @@ For fashion and pure style prompts, please refer to the standard prompt sample p
 - **Compatibility:** Works with other **Anima-series** models
 - **Training Method:** **LoRA** trained entirely via tag flow, without any natural language
 ---
+## MOSSTagFlow
+- **基础模型:** [**MOSS Image**](https://civitai.red/models/3005406/moss-image) - **Base**
+- **兼容性:** 可在其他 **MOSS Image** 系列模型上使用
+- **训练方式:** 未使用自然语言, 仅以标签流标记的 **LoRA** 训练
+- **Base Model:** [**MOSS Image**](https://civitai.red/models/3005406/moss-image) - **Base**
+- **Compatibility:** Works with other **MOSS Image-series** models
+- **Training Method:** **LoRA** trained entirely via tag flow, without any natural language
+---
 ## About the version number
-- **AnimaTagFlow:** 具体版本号数字为数据集版本
-- **AnimaTagFlow:** The specific version number represents the dataset version
+- 版本号格式遵循 `{cate}V{x}.{y}` (例如 `MOSSTagFlowV1.0`)
+  - **cate:** 类别代号
+  - **x:** 数据集版本
+  - **y:** 训练参数/超参数版本
+- Version tag follows the format `{cate}V{x}.{y}` (e.g. `MOSSTagFlowV1.0`)
+  - **cate:** Category identifier / code
+  - **x:** Dataset version
+  - **y:** Training parameter / hyperparameter version
