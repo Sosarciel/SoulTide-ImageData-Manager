@@ -19,6 +19,8 @@ import { CmdSliceImage } from "./SliceImage";
 import { CmdFlipImage } from "./FlipImage";
 import { CmdConvertPng } from "./ConvertPng";
 import { CmdShuffleCaption } from "./ShuffleCaption";
+import { CmdRepackCkpt } from "./Repack";
+import { CmdVerifyRepack } from "./Verify";
 
 export async function cliRoute() {
     CmdAddBG(program);
@@ -41,6 +43,8 @@ export async function cliRoute() {
     CmdFlipImage(program);
     CmdConvertPng(program);
     CmdShuffleCaption(program);
+    CmdRepackCkpt(program);
+    CmdVerifyRepack(program);
     program.parse(process.argv);
 }
 cliRoute();
