@@ -36,8 +36,8 @@ function deterministicShuffle<T>(array: T[], prng: () => number): T[] {
 
 export const CmdShuffleCaption = (program: Command) => program
     .command("Shuffle-Caption")
-    .alias("shuffle-tag")
     .alias("shuffletag")
+    .alias("shuffle-tag")
     .description("对训练集内所有 txt 打标文件进行确定性多候选打乱增强 (兼容 MOSS-Image / Kohya)")
     .argument("<input>", "训练集根目录路径")
     .option("-c, --candidates <number>", "生成的打乱候选总数 (含原版)", "8")
