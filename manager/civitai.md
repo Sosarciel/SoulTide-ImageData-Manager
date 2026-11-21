@@ -1,11 +1,11 @@
 <div style="font-size: 1.2em;">
 时装和纯样式提示词请参考标准提示样例图片与 [版本变更说明 (About this version)]。
 <br/>
-<strong>这是传统 Diffusion 模型版本。</strong> DiT 模型版本 (Anima) 请直接前往本页面的 [推荐资源 (Suggested Resources)] 栏目查看。
+<strong>这是传统 Diffusion 模型版本。</strong> DiT 模型版本 (Anima / MOSS) 请直接前往本页面的 [推荐资源 (Suggested Resources)] 栏目查看。
 <br/><br/>
 For fashion and pure style prompts, please refer to the standard prompt sample pictures and [About this version].
 <br/>
-<strong>This is the DiT version.</strong> For traditional Diffusion models (SD1.5 / Pony / Illustrious), please check the [Suggested Resources] section on this page.
+<strong>This is the traditional Diffusion version.</strong> For DiT models (Anima / MOSS), please check the [Suggested Resources] section on this page.
 </div>
 <br/>
 
@@ -41,7 +41,13 @@ For fashion and pure style prompts, please refer to the standard prompt sample p
 - **Compatibility:** Works with other **Illustrious-series** models
 ---
 ## About the version number
-- **Pony:** 具体版本号数字为数据集与训练方式版本, 最高版本号为 **Pony** 下的最新的推荐版本, 但目前均落后于 **IL**
-- **IL / ILLC / ILWAILC:** 具体版本号数字为数据集版本, 最高版本号为 **IL / ILLC / ILWAILC** 三者下的最终版本, 同版本号如 **ILV1.0 / ILLCV1.0** 表示为使用相同数据集, 仅训练方式不同
-- **Pony:** The version number represents the dataset and training method version. The highest version number indicates the latest recommended version under **Pony**, though all Pony versions currently lag behind **IL**.
-- **IL / ILLC / ILWAILC:** The version number represents the dataset version. The highest version number is the final version across **IL / ILLC / ILWAILC**. Identical version numbers such as **ILV1.0 / ILLCV1.0** indicate that they use the same dataset but differ only in training method.
+- **Pony (特例):** 版本号为数据集与训练方式版本, 最高版本号为 **Pony** 下的最新推荐版本, 目前均落后于 **其他版本**
+- **其他版本:** 版本号格式遵循 `{cate}V{x}.{y}` (例如 `ILV1.0`), 最高版本号为最终版本
+  - **cate:** 类别代号（如 `IL` / `ILLC` / `ILWAILC`; 同 `x` 不同代号如 `ILV1.0 / ILLCV1.0` 表示使用相同数据集, 仅训练方式或基模不同）
+  - **x:** 数据集版本
+  - **y:** 训练参数/超参数版本
+- **Pony (Exception):** The version number represents the dataset and training method version. The highest number is the latest recommended version under **Pony**, though all currently lag behind **Other Versions**.
+- **Other Versions:** Version tag follows `{cate}V{x}.{y}` (e.g. `ILV1.0`), with the highest version number being the final version.
+  - **cate:** Category identifier / code (e.g. `IL` / `ILLC` / `ILWAILC`; same `x` with different codes like `ILV1.0 / ILLCV1.0` indicates the same dataset with different training methods or base models)
+  - **x:** Dataset version
+  - **y:** Training parameter / hyperparameter version
