@@ -43,7 +43,7 @@ For fashion and pure style prompts, please refer to the standard prompt sample p
 ## About the version number
 - **Pony (特例):** 版本号为数据集与训练方式版本, 最高版本号为 **Pony** 下的最新推荐版本, 目前均落后于 **其他版本**
 - **其他版本:** 版本号格式遵循 `{cate}V{x}.{y}` (例如 `ILV1.0`), 最高版本号为最终版本
-  - **cate:** 类别代号（如 `IL` / `ILLC` / `ILWAILC`; 同 `x` 不同代号如 `ILV1.0 / ILLCV1.0` 表示使用相同数据集, 仅训练方式或基模不同）
+  - **cate:** 类别代号 (如 `IL` / `ILLC` / `ILWAILC`; 同 `x` 不同代号如 `ILV1.0 / ILLCV1.0` 表示使用相同数据集, 仅训练方式或基模不同)
   - **x:** 数据集版本
   - **y:** 训练参数/超参数版本
 - **Pony (Exception):** The version number represents the dataset and training method version. The highest number is the latest recommended version under **Pony**, though all currently lag behind **Other Versions**.
